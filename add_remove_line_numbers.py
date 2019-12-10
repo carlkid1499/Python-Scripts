@@ -2,6 +2,7 @@
 #!/usr/bin/env python3
 
 from shutil import copyfile # import stuff to copy files see: https://docs.python.org/3/library/shutil.html
+import re
 
 # while loop for execution
 file = "" # variable for the file name
@@ -27,9 +28,9 @@ while(i !=1):
         with open(file, "r") as openfile:
             with open("test2.txt", "w") as outfile:
                 for line_number, line in enumerate(openfile):
-                    outfile.write('{0:<3}{1}'.format(line_number+1, line))
-        f.close()
-        f.close()
+                    outfile.write('{0:<5}{1}'.format(line_number+1, line))
+                    # {0:<num_spacing} insert number and spaces 1_____text
+                    # Note: number takes up one space as well.
 
         f = open("test2.txt","r")
         print("\nModified File: \n")
@@ -41,6 +42,17 @@ while(i !=1):
     elif (option == 2):
         file=input("Enter File Name: ") #read in the file name
         print("File name entered: ",file)
+
+        with open(file, "r") as openfile:
+            with open("test3.txt", "w") as outfile:
+                for line in openfile:
+                    line = re.sub(r'\b[0-9]','',line) # remove any number
+                    # r'\b[0-9]' ... the "r" says we are entering a regex
+                    # r'regex','replace with',string)
+                    line = line.lstrip() # remove leading spaces
+                    outfile.write(line) 
+
+        
         print("Removing line numbers...\n")
         
         
