@@ -34,6 +34,10 @@ with tarfile.open('backup-' + timestamp + '.tar.gz', "w:gz") as tar_handle: #cre
             tar_handle.add(os.path.join(root, file)) # add the stuff to the tar file
             filecounter += 1 # counter
             
+    if(foldercounter == 0 and filecounter == 0): # single file case
+        tar_handle.add(inputlist[0]) # add the stuff to the tar file
+        filecounter += 1 # counter
+            
 shutil.move('backup-' + timestamp + '.tar.gz',backupdir) # move tar file into the backupdir
             
 print("\nFiles: ",filecounter,"Folders: ",foldercounter)
