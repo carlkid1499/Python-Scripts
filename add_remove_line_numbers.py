@@ -1,8 +1,15 @@
-#Like BASH begin with the shabang #!
+# Carlos Santos
+# CS 270
+# Bruce Bolden
+# 12/13/19
+# A script to remove and add line numbers to a given file
+
+
+#Like BASH begin with the shabang
 #!/usr/bin/env python3
 import shutil # import stuff to copy files see: https://docs.python.org/3/library/shutil.html
-import re
-import os
+import re # regular expressions
+import os # gets funtions for os stuff like making directories
 
 # getting the current working directory
 src_dir = os.getcwd()
@@ -45,7 +52,7 @@ while(i !=1):
         print(f.read())
         f.close()
         print("\n")
-        # Now overwrite the original file... why keeps copieis lol
+        # Now overwrite the original file... why keeps copiess lol
         shutil.move('copy_' + file, file)
         
         
